@@ -54,6 +54,7 @@ namespace Doppler.BillingUser.Controllers
         private readonly ICurrencyRepository _currencyRepository;
         private readonly IMercadoPagoService _mercadoPagoService;
         private readonly IPaymentStatusMapper _paymentStatusMapper;
+        private readonly ISmsRepository _smsRepository;
 
         private readonly JsonSerializerSettings settings = new JsonSerializerSettings
         {
@@ -102,7 +103,8 @@ namespace Doppler.BillingUser.Controllers
             IEmailTemplatesService emailTemplatesService,
             ICurrencyRepository currencyRepository,
             IMercadoPagoService mercadopagoService,
-            IPaymentStatusMapper paymentStatusMapper)
+            IPaymentStatusMapper paymentStatusMapper,
+            ISmsRepository smsRepository)
         {
             _logger = logger;
             _billingRepository = billingRepository;
@@ -124,6 +126,7 @@ namespace Doppler.BillingUser.Controllers
             _currencyRepository = currencyRepository;
             _mercadoPagoService = mercadopagoService;
             _paymentStatusMapper = paymentStatusMapper;
+            _smsRepository = smsRepository;
         }
 
         [Authorize(Policies.OWN_RESOURCE_OR_SUPERUSER)]
